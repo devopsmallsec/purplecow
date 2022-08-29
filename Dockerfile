@@ -1,6 +1,6 @@
 FROM node:16
 
-WORKDIR /sites/challenge/PPC
+WORKDIR /
 
 # dependencies
 COPY package*.json ./

@@ -24,6 +24,7 @@ async function run(pid) {
     // via http server instead of express for:
     // - with other servers such as websocket && graphql
     const httpServer = http.createServer(app);
+    // my example of running socket with restful api
     Socket.run({ httpServer, app });
 
     await new Promise((resolve) => httpServer.listen({ port: PORT }, resolve));

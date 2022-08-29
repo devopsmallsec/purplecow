@@ -36,6 +36,13 @@
 - without nodemon: npm start
 
 4. (optional) git checkout -b testing for latest push that has not been pr to master branch
+5. (optional) run with one core
+
+- set WORKERS = 1
+
+### Docker
+
+1. docker-compose up
 
 ## API
 
