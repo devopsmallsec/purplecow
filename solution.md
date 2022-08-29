@@ -14,6 +14,7 @@
 - Runs locally with a single startup command (done)
 - Includes a solution.md that provides relevant documentation (see below) and how to
 - build/run the solution (done)
+- adviced: application ping me everytime it is ran via twilio api (done)
 
 ## Requirement Push
 

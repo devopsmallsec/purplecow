@@ -28,7 +28,7 @@ async function run(pid) {
     Socket.run({ httpServer, app });
 
     await new Promise((resolve) => httpServer.listen({ port: PORT }, resolve));
-    console.log(`🚀 Server ready at http://localhost:${PORT}`, pid);
+    console.log(`🚀 Worker ready at http://localhost:${PORT}`, pid);
     return { app };
   } catch (error) {
     console.log(error, "server error");

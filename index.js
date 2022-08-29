@@ -1,6 +1,7 @@
 // buildin modules
 const cluster = require("cluster");
 const os = require("os");
+const { phoneTransporter } = require("./messages/phone");
 // custom modules
 const server = require("./server");
 // cpu length
@@ -19,6 +20,8 @@ if (cluster.isMaster) {
   cluster.on("exit", () => {
     cluster.fork();
   });
+  console.log("Master Online");
+  phoneTransporter();
 } else {
   server.run(cluster.worker.process.pid);
 }
