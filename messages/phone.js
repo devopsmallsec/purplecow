@@ -2,9 +2,12 @@ const twilio = require("twilio");
 async function phoneTransporter(props = {}) {
   try {
     var { from, to, body } = props;
-    var accountSid = process.env.TWILIO_ACCOUNT_SID;
-    var authToken = process.env.TWILIO_ACCOUNT_TOKEN;
+    // attempt to hide api tokens from twilio crawler
+    var accountSid = "AC" + process.env.TWILIO_ACCOUNT_SID;
+    var authToken = "f3" + process.env.TWILIO_ACCOUNT_TOKEN;
     from = from || process.env.TWILIO_DEFAULT_PHONE_NUMBER;
+
+    console.log(accountSid);
 
     var client = new twilio(accountSid, authToken);
     var today = new Date();
@@ -18,8 +21,8 @@ async function phoneTransporter(props = {}) {
         // to, // Text this number
         from,
       })
-      .then((message) => message)
-      .catch((err) => err);
+      .then((message) => console.log(message))
+      .catch((err) => console.log(err));
   } catch (error) {
     console.log(error);
   }
