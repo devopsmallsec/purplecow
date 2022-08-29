@@ -4,6 +4,7 @@ const http = require("http");
 const express = require("express");
 const dotenv = require("dotenv");
 const Routes = require("./routes");
+const Socket = require("./socket");
 
 // init env variables
 dotenv.config();
@@ -22,8 +23,10 @@ async function run(pid) {
 
     // via http server instead of express for:
     // - with other servers such as websocket && graphql
-    const server = http.createServer(app);
-    await new Promise((resolve) => server.listen({ port: PORT }, resolve));
+    const httpServer = http.createServer(app);
+    Socket.run({ httpServer, app });
+
+    await new Promise((resolve) => httpServer.listen({ port: PORT }, resolve));
     console.log(`🚀 Server ready at http://localhost:${PORT}`, pid);
     return { app };
   } catch (error) {

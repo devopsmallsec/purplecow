@@ -1,7 +1,7 @@
 const dict = {
-  items: [
+  products: [
     {
-      file: "index",
+      file: "item",
       prefix: "items",
     },
   ],

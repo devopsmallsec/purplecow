@@ -79,6 +79,12 @@ const dropItem = async (q) => {
 };
 router.post(`/create`, async (req, res) => {
   try {
+    let body = req.body;
+    // base on requirement: error if no name
+    // id will be assigned
+    if (!body.name) {
+      throw { status: 401, message: "Name is required" };
+    }
     let output = await asyncLocalStorage.run(
       db,
       async () => await saveItem(req.body)
@@ -86,7 +92,7 @@ router.post(`/create`, async (req, res) => {
     res.send(output);
   } catch (error) {
     console.log(error);
-    res.status(501).send("Server Error");
+    res.status(error.status || 501).send(error.message || "Server Error");
   }
 });
 
