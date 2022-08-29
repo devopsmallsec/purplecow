@@ -3,6 +3,7 @@ const http = require("http");
 // external modules
 const express = require("express");
 const dotenv = require("dotenv");
+const Routes = require("./routes");
 
 // init env variables
 dotenv.config();
@@ -13,6 +14,8 @@ async function run(pid) {
   try {
     // to parse json object in body
     app.use(express.json({ extended: false }));
+    // initialize routes
+    Routes.run(app);
 
     // get the port number or set to default
     const PORT = process.env.PORT || 3000;
