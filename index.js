@@ -1,24 +1,22 @@
-//**** Internal Modules */
-const http = require("http");
-// external modules
-const express = require("express");
-const dotenv = require("dotenv");
+// buildin modules
+const cluster = require("cluster");
+const os = require("os");
+// custom modules
+const server = require("./server");
+// cpu length
+let cores_count = os.cpus().length;
 
-// init env variables
-dotenv.config();
-// init express
-const app = express();
+// hosting server such as heroku uses WEB_CONCURRENCY to getch cores count
+let WORKERS = process.env.WEB_CONCURRENCY || cores_count;
 
-// to parse json object in body
-app.use(express.json({ extended: false }));
-
-// get the port number or set to default
-const PORT = process.env.PORT || 3000;
-
-// via http server instead of express for:
-// - with other servers such as websocket && graphql
-const server = http.createServer(app);
-
-server.listen({ port: PORT });
-
-console.log(`🚀 Server ready at http://localhost:${PORT}`);
+if (cluster.isMaster) {
+  for (var i = 0; i < WORKERS; i++) {
+    cluster.fork();
+  }
+  cluster.on("online", () => {});
+  cluster.on("exit", () => {
+    cluster.fork();
+  });
+} else {
+  server.run(cluster.worker.process.pid);
+}
