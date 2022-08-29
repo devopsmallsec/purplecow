@@ -3,6 +3,7 @@ const router = express.Router();
 let { AsyncLocalStorage } = require("async_hooks");
 const { UUID } = require("../../utils/agent");
 const asyncLocalStorage = new AsyncLocalStorage();
+const webapp = require("../../app");
 
 // initialized db
 // todo: finish async_hooks and use async_hooks via express middleware
@@ -138,6 +139,14 @@ router.delete(`/drop`, async (req, res) => {
     console.log(error);
     res.status(501).send("Server Error");
   }
+});
+
+router.get("/", async (req, res) => {
+  let list = await asyncLocalStorage.run(
+    db,
+    async () => await listItems(req.query)
+  );
+  res.send(webapp.List(list));
 });
 
 module.exports = router;
