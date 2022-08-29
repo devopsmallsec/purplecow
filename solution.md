@@ -13,7 +13,7 @@
 - Includes a Dockerfile that will run and serve the web application (done)
 - Runs locally with a single startup command (done)
 - Includes a solution.md that provides relevant documentation (see below) and how to
-  build/run the solution **_ pending _**
+  build/run the solution (done)
 
 ## To Do
 

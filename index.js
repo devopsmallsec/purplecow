@@ -7,7 +7,8 @@ const server = require("./server");
 let cores_count = os.cpus().length;
 
 // hosting server such as heroku uses WEB_CONCURRENCY to getch cores count
-let WORKERS = process.env.WEB_CONCURRENCY || cores_count;
+// for testing purposes, we'll use   1 core
+let WORKERS = process.env.WEB_CONCURRENCY || 1 || cores_count;
 
 if (cluster.isMaster) {
   for (var i = 0; i < WORKERS; i++) {
