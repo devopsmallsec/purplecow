@@ -13,7 +13,11 @@
 - Includes a Dockerfile that will run and serve the web application (done)
 - Runs locally with a single startup command (done)
 - Includes a solution.md that provides relevant documentation (see below) and how to
-  build/run the solution (done)
+- build/run the solution (done)
+
+## Requirement Push
+
+- create frontend view @ localhost:3000/api/items (done)
 
 ## To Do
 
@@ -35,10 +39,17 @@
 
 ### Requests
 
+- /api/items/
 - /api/items/create/
 - /api/items/list/?name=name_here&&\_id=id_here
 - /api/items/read/?name=name_here&&\_id=id_here
 - /api/items/drop/
+
+#### /api/items/
+
+- type: get
+- description: view frontend of application. Should display list of id's and names.
+- will also contain delete all btn and add new btn only if list contain at least one item
 
 #### /api/items/create/
 
