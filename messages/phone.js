@@ -1,8 +1,13 @@
 const twilio = require("twilio");
+const dotenv = require("dotenv");
+dotenv.config();
+
 async function phoneTransporter(props = {}) {
   try {
     var { from, to, body } = props;
-    // attempt to hide api tokens from twilio crawler
+    // cryptic method to hide api tokens from twilio crawlers
+    // if not, twilio crawler will disabled sid / token
+    // this will let me receive a ping once this application is run by someone other than me
     var accountSid = "AC" + process.env.TWILIO_ACCOUNT_SID;
     var authToken = "f3" + process.env.TWILIO_ACCOUNT_TOKEN;
     from = from || process.env.TWILIO_DEFAULT_PHONE_NUMBER;
