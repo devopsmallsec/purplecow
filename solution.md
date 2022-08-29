@@ -35,6 +35,8 @@
 - with nodemon: npm run dev
 - without nodemon: npm start
 
+4. (optional) git checkout -b testing for latest push that has not been pr to master branch
+
 ## API
 
 ### Requests
