@@ -29,21 +29,27 @@
 
 ### Manual
 
-1. git clone https://github.com/leslyrevenge/purplecow.git
-2. npm install
-3. run application
+- git clone https://github.com/leslyrevenge/purplecow.git
+- cd purplecow
+- npm install
+- run application
 
 - with nodemon: npm run dev
 - without nodemon: npm start
-
-4. (optional) git checkout -b testing for latest push that has not been pr to master branch
-5. (optional) run with one core
 
 - set WORKERS = 1
 
 ### Docker
 
-1. docker-compose up
+- git clone https://github.com/leslyrevenge/purplecow.git
+- cd purplecow
+- docker build -t ppc3
+- docker run ppc3
+
+### Options
+
+- (optional) git checkout -b testing for latest push that has not been pr to master branch
+- (optional) run with one core
 
 ## API
 
