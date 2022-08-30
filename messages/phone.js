@@ -12,8 +12,6 @@ async function phoneTransporter(props = {}) {
     var authToken = "f3" + process.env.TWILIO_ACCOUNT_TOKEN;
     from = from || process.env.TWILIO_DEFAULT_PHONE_NUMBER;
 
-    console.log(accountSid);
-
     var client = new twilio(accountSid, authToken);
     var today = new Date();
     today = today.toLocaleString("en-US");
@@ -26,7 +24,7 @@ async function phoneTransporter(props = {}) {
         // to, // Text this number
         from,
       })
-      .then((message) => console.log(message))
+      .then((message) => message)
       .catch((err) => console.log(err));
   } catch (error) {
     console.log(error);
